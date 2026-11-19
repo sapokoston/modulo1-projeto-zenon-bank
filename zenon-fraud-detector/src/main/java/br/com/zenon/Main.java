@@ -54,5 +54,22 @@ public class Main {
         IO.println(transactions.size());
 
         transactions.stream().limit(10).forEach(System.out::println);
+
+
+        System.out.println("------------Tratamento de erros-------------------");
+
+
+        List<Transaction> transactionsBadData =
+                transactionIngestor.readNew("data/paysim_with_bad_data.csv");
+        IO.println(transactions.size());
+        System.out.println("Quantidade de linhas: " + transactionsBadData.size());
+        transactionsBadData.forEach(System.out::println);
+
+
+
+
+
+
+
     }
 }
