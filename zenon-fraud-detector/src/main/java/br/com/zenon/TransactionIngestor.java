@@ -9,6 +9,7 @@ import java.util.*;
 
 public class TransactionIngestor {
 
+    public static final int FRAUD_LIMIT = 100_000;
     public List<Transaction> readNew(String filename) {
         Path path = Path.of(filename);
 
@@ -17,7 +18,7 @@ public class TransactionIngestor {
 
             return lines.stream()
                     .skip(1)
-                    .limit(1000)
+                    .limit(FRAUD_LIMIT)
                     .map(this::parseTransaction)
                     .filter(Optional::isPresent)
                     .map(Optional::get)
@@ -80,5 +81,6 @@ public class TransactionIngestor {
             System.err.println("Erro ao fazer parse: " + line + " | " + e);
             return Optional.empty();
         }
+
     }
 }
